@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Árboles Binarios y M-Vías</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Visualizador de Árboles Binarios y M-Vías</h1>
+        
+        <div class="controls">
+            <div class="input-group">
+                <input type="number" id="valorInput" placeholder="Ingrese un valor">
+                <button onclick="insertarValor()">Insertar</button>
+                <button onclick="eliminarValor()">Eliminar</button>
+                <select id="tipoArbol" onchange="cambiarTipoArbol()">
+                    <option value="abb">Árbol Binario (ABB)</option>
+                    <option value="avl">Árbol AVL</option>
+                    <option value="mvias">Árbol M-Vías</option>
+                </select>
+                
+                <!-- Configuración específica para M-Vías -->
+                <div id="configMvias" class="config-group" style="display: none;">
+                    <label for="gradoM">Grado M:</label>
+                    <input type="number" id="gradoM" min="3" max="10" value="3">
+                    <button onclick="configurarMvias()">Configurar</button>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button onclick="realizarRecorrido('inorden')">InOrden</button>
+                <button onclick="realizarRecorrido('preorden')">PreOrden</button>
+                <button onclick="realizarRecorrido('postorden')">PostOrden</button>
+                <button onclick="realizarRecorrido('amplitud')">Amplitud</button>
+                <button onclick="limpiarArbol()">Limpiar Árbol</button>
+                <button onclick="mostrarInfo()">Información</button>
+                <button onclick="mostrarEspejo()">Mostrar Espejo</button>
+            </div>
+        </div>
+        
+        <div class="info">
+            <div id="mensaje"></div>
+            <div id="recorridoResultado"></div>
+            <div id="infoArbol"></div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="treeCanvas" width="2000" height="1200"></canvas>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='tree.js') }}"></script>
+</body>
+</html>
